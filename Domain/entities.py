@@ -53,7 +53,6 @@ class AlphaExtractor(Extractor):
                             for fn in self.features_list)
 
         values = np.concatenate([x[0] for x in response])
-        print(values)
         feat_names = np.concatenate([x[1] for x in response])
         index_surface = np.where(feat_names=="Superficie (km2)")
         surface = values[index_surface]
