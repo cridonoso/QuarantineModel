@@ -1,5 +1,8 @@
 import pandas as pd
 import unidecode
+import numpy as np
+from bs4 import BeautifulSoup
+import requests
 
 
 SERVER = 'https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/'
@@ -36,3 +39,48 @@ def get_population():
     population = pd.read_csv('Domain/data/pob_chile.csv')
     population['Comuna'] = population.apply(lambda x: unidecode.unidecode(x['Comuna']).lower(), 1)
     return population
+
+def get_IPC():
+    url = 'https://datosmacro.expansion.com/ipc-paises/chile'
+    html_page = requests.get(url)
+    soup = BeautifulSoup(html_page.text, 'html.parser') # Instanciamos nuestro scrapper
+
+    items = soup.find('table', attrs={'id':'tb1_412'})
+    ipc_frames = []
+    for item in items.find_all('tr'):
+        a_item = item.find('a')
+        if a_item is not None:
+            url_item = 'https://datosmacro.expansion.com'+a_item['href']
+            name = a_item.text[:-3].strip()
+            if '<' in name: continue
+
+            html_page_in = requests.get(url_item)
+            soup_in = BeautifulSoup(html_page_in.text, 'html.parser')
+            table_in = soup_in.find('table', attrs={'id':'tb1_412',
+            'class':"table tabledat table-striped table-condensed table-hover"})
+
+            dates_list = []
+            names_list = []
+            value_list = []
+            for item_in in table_in.find_all('tr'):
+
+                try:
+                    date = item_in.find('td', attrs={'class': 'fecha'})['data-value']
+                    dates_list.append(date)
+                    values = []
+                    for iitem in item_in.find_all('td', attrs={'class': 'numero'}):
+                        v = iitem['data-value']
+                        values.append(v)
+
+                    names_list.append(name)
+                    value_list.append(values)
+                except:
+                    continue
+
+            df = pd.DataFrame(np.array(value_list), columns=['interanual', 'acum enero', 'var mensual'])
+            df['fecha'] = dates_list
+            df['item'] =names_list
+            ipc_frames.append(df)
+
+    all_frames = pd.concat(ipc_frames)
+    return all_frames

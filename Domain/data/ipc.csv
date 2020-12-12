@@ -1,0 +1,170 @@
+interanual,acum enero,var mensual,fecha,item
+2.7,2.6,-0.1,2020-11-01,IPC General
+3,2.8,0.7,2020-10-01,IPC General
+3.1,2.1,0.6,2020-09-01,IPC General
+2.5,1.4,0.1,2020-08-01,IPC General
+2.5,1.3,0.1,2020-07-01,IPC General
+2.6,1.2,-0.1,2020-06-01,IPC General
+2.8,1.3,-0.1,2020-05-01,IPC General
+3.4,1.3,-0.1,2020-04-01,IPC General
+3.7,1.4,0.3,2020-03-01,IPC General
+3.9,1,0.5,2020-02-01,IPC General
+3.5,0.6,0.6,2020-01-01,IPC General
+3,3,0.1,2019-12-01,IPC General
+2.8,2.9,0.1,2019-11-01,IPC General
+6.8,7.4,0.2,2020-11-01,Alimentos y bebidas no alcohólicas
+8,7.2,0.6,2020-10-01,Alimentos y bebidas no alcohólicas
+8.3,6.6,1.8,2020-09-01,Alimentos y bebidas no alcohólicas
+6.3,4.7,0.2,2020-08-01,Alimentos y bebidas no alcohólicas
+6.8,4.5,0.6,2020-07-01,Alimentos y bebidas no alcohólicas
+6.4,3.9,0.3,2020-06-01,Alimentos y bebidas no alcohólicas
+6.6,3.5,-0,2020-05-01,Alimentos y bebidas no alcohólicas
+6.6,3.6,1,2020-04-01,Alimentos y bebidas no alcohólicas
+6.1,2.6,0.8,2020-03-01,Alimentos y bebidas no alcohólicas
+6.1,1.8,0.7,2020-02-01,Alimentos y bebidas no alcohólicas
+5.1,1,1,2020-01-01,Alimentos y bebidas no alcohólicas
+3.7,3.7,-0.5,2019-12-01,Alimentos y bebidas no alcohólicas
+3.5,4.3,1.3,2019-11-01,Alimentos y bebidas no alcohólicas
+3.2,3.6,-0.3,2020-11-01,Bebidas alcohólicas y tabaco
+3.4,3.9,1.1,2020-10-01,Bebidas alcohólicas y tabaco
+3.3,2.8,-0.5,2020-09-01,Bebidas alcohólicas y tabaco
+4.9,3.2,0.6,2020-08-01,Bebidas alcohólicas y tabaco
+4.4,2.7,1.1,2020-07-01,Bebidas alcohólicas y tabaco
+2.9,1.5,-0.3,2020-06-01,Bebidas alcohólicas y tabaco
+3.1,1.8,-0.3,2020-05-01,Bebidas alcohólicas y tabaco
+4.1,2.1,1.4,2020-04-01,Bebidas alcohólicas y tabaco
+2.4,0.6,-0.3,2020-03-01,Bebidas alcohólicas y tabaco
+2.8,0.9,-0.4,2020-02-01,Bebidas alcohólicas y tabaco
+3.3,1.3,1.3,2020-01-01,Bebidas alcohólicas y tabaco
+3.7,3.7,-0.4,2019-12-01,Bebidas alcohólicas y tabaco
+3.5,4.1,-0.2,2019-11-01,Bebidas alcohólicas y tabaco
+-3.3,-2,-4.9,2020-11-01,Vestido y calzado
+1.6,3,3.6,2020-10-01,Vestido y calzado
+-1.4,-0.5,1.7,2020-09-01,Vestido y calzado
+-2.5,-2.2,2.3,2020-08-01,Vestido y calzado
+-4.1,-4.4,-0.3,2020-07-01,Vestido y calzado
+-3,-4.1,-0.7,2020-06-01,Vestido y calzado
+-2.7,-3.4,-0.8,2020-05-01,Vestido y calzado
+-2.4,-2.7,-3.2,2020-04-01,Vestido y calzado
+0.3,0.6,0.6,2020-03-01,Vestido y calzado
+-0.5,-0,2.4,2020-02-01,Vestido y calzado
+-0.4,-2.4,-2.4,2020-01-01,Vestido y calzado
+1.8,1.8,-1.3,2019-12-01,Vestido y calzado
+1.6,3.2,-0.1,2019-11-01,Vestido y calzado
+2.2,1.6,-0.2,2020-11-01,Vivienda
+1.6,1.7,0.7,2020-10-01,Vivienda
+2.4,1,0.1,2020-09-01,Vivienda
+2.4,1,0.3,2020-08-01,Vivienda
+1.9,0.7,-0.3,2020-07-01,Vivienda
+2.5,1,0.2,2020-06-01,Vivienda
+2.4,0.8,-0,2020-05-01,Vivienda
+4.3,0.8,0,2020-04-01,Vivienda
+4.5,0.8,0.2,2020-03-01,Vivienda
+4.5,0.6,0.3,2020-02-01,Vivienda
+4.3,0.3,0.3,2020-01-01,Vivienda
+4.3,4.3,0.6,2019-12-01,Vivienda
+3.8,3.7,-0.8,2019-11-01,Vivienda
+4.7,5.1,-0,2020-11-01,Menaje
+5.2,5.1,1,2020-10-01,Menaje
+4.4,4,1,2020-09-01,Menaje
+3,3,0.3,2020-08-01,Menaje
+2.9,2.7,0.2,2020-07-01,Menaje
+3.3,2.4,-0.1,2020-06-01,Menaje
+3.2,2.5,0.5,2020-05-01,Menaje
+2.7,2,-0,2020-04-01,Menaje
+3.2,2,0.4,2020-03-01,Menaje
+2.9,1.6,0.6,2020-02-01,Menaje
+2.5,1,1,2020-01-01,Menaje
+2.2,2.2,-0.3,2019-12-01,Menaje
+2.5,2.5,0.4,2019-11-01,Menaje
+2.2,2,0,2020-11-01,Medicina
+2.1,2,-0.1,2020-10-01,Medicina
+2.3,2,0.3,2020-09-01,Medicina
+2.1,1.8,-0.1,2020-08-01,Medicina
+2.4,1.9,0.5,2020-07-01,Medicina
+2.5,1.4,-0.4,2020-06-01,Medicina
+2.9,1.8,0.4,2020-05-01,Medicina
+2.4,1.4,0.4,2020-04-01,Medicina
+2.1,0.9,0.7,2020-03-01,Medicina
+2,0.3,0.4,2020-02-01,Medicina
+2.2,-0.2,-0.2,2020-01-01,Medicina
+2.5,2.5,0.2,2019-12-01,Medicina
+2.6,2.4,-0,2019-11-01,Medicina
+0.3,-1.4,0.3,2020-11-01,Transporte
+-0.6,-1.7,0.3,2020-10-01,Transporte
+0.4,-2,0.4,2020-09-01,Transporte
+-0.4,-2.4,-0.9,2020-08-01,Transporte
+0.6,-1.5,-0.8,2020-07-01,Transporte
+2,-0.7,-0.7,2020-06-01,Transporte
+2.5,0,-0.6,2020-05-01,Transporte
+4.2,0.6,-0.9,2020-04-01,Transporte
+5.7,1.5,-0.9,2020-03-01,Transporte
+5.4,2.4,1.3,2020-02-01,Transporte
+3.8,1.1,1.1,2020-01-01,Transporte
+2.5,2.5,1.7,2019-12-01,Transporte
+0.6,0.7,-0.6,2019-11-01,Transporte
+-1.8,-1.4,-0.2,2020-11-01,Comunicaciones
+-1.7,-1.2,-0.1,2020-10-01,Comunicaciones
+-1.7,-1.2,-0.1,2020-09-01,Comunicaciones
+-1.9,-1,0.1,2020-08-01,Comunicaciones
+-3.5,-1.1,-0.2,2020-07-01,Comunicaciones
+-3.6,-0.9,-0.4,2020-06-01,Comunicaciones
+-3.5,-0.5,0.2,2020-05-01,Comunicaciones
+-3.8,-0.7,-0.7,2020-04-01,Comunicaciones
+-3.2,0,0,2020-03-01,Comunicaciones
+-2.9,0,-0.1,2020-02-01,Comunicaciones
+-3,0.1,0.1,2020-01-01,Comunicaciones
+-3.2,-3.2,-0.4,2019-12-01,Comunicaciones
+-3,-2.9,-0.1,2019-11-01,Comunicaciones
+0.7,1.7,0.2,2020-11-01,Ocio y Cultura
+1,1.5,-0,2020-10-01,Ocio y Cultura
+3,1.5,0.7,2020-09-01,Ocio y Cultura
+2.2,0.8,0.3,2020-08-01,Ocio y Cultura
+2.2,0.5,0.1,2020-07-01,Ocio y Cultura
+2.1,0.4,0.7,2020-06-01,Ocio y Cultura
+1.9,-0.4,0.3,2020-05-01,Ocio y Cultura
+4.2,-0.7,-0,2020-04-01,Ocio y Cultura
+4.7,-0.7,-1.3,2020-03-01,Ocio y Cultura
+6.1,0.7,-1.1,2020-02-01,Ocio y Cultura
+7,1.8,1.8,2020-01-01,Ocio y Cultura
+4.3,4.3,-1,2019-12-01,Ocio y Cultura
+6.9,5.4,0.5,2019-11-01,Ocio y Cultura
+3.5,3.5,-0.2,2020-11-01,Enseñanza
+3.7,3.7,0,2020-10-01,Enseñanza
+3.7,3.7,0,2020-09-01,Enseñanza
+3.7,3.7,0.3,2020-08-01,Enseñanza
+3.5,3.4,0,2020-07-01,Enseñanza
+3.4,3.4,-0,2020-06-01,Enseñanza
+3.5,3.4,0,2020-05-01,Enseñanza
+3.4,3.4,-0.4,2020-04-01,Enseñanza
+3.9,3.8,3.5,2020-03-01,Enseñanza
+4.9,0.3,0.2,2020-02-01,Enseñanza
+4.7,0.1,0.1,2020-01-01,Enseñanza
+4.6,4.6,0,2019-12-01,Enseñanza
+4.6,4.6,0,2019-11-01,Enseñanza
+2.3,1.8,0,2020-11-01,"Hoteles, cafés y restaurantes"
+1.9,1.8,1.3,2020-10-01,"Hoteles, cafés y restaurantes"
+1.3,0.5,0.3,2020-09-01,"Hoteles, cafés y restaurantes"
+1.1,0.2,-0.2,2020-08-01,"Hoteles, cafés y restaurantes"
+1.6,0.4,0,2020-07-01,"Hoteles, cafés y restaurantes"
+1.8,0.4,0.2,2020-06-01,"Hoteles, cafés y restaurantes"
+1.7,0.2,-0.7,2020-05-01,"Hoteles, cafés y restaurantes"
+2.8,0.9,-0.2,2020-04-01,"Hoteles, cafés y restaurantes"
+2.8,1.1,0.4,2020-03-01,"Hoteles, cafés y restaurantes"
+3.1,0.7,0.5,2020-02-01,"Hoteles, cafés y restaurantes"
+2.5,0.2,0.2,2020-01-01,"Hoteles, cafés y restaurantes"
+2.8,2.8,0.5,2019-12-01,"Hoteles, cafés y restaurantes"
+2.2,2.3,-0.4,2019-11-01,"Hoteles, cafés y restaurantes"
+3.3,2.8,-0,2020-11-01,Otros bienes y servicios
+3.3,2.9,2.3,2020-10-01,Otros bienes y servicios
+1.2,0.6,0.6,2020-09-01,Otros bienes y servicios
+0.8,-0,0.2,2020-08-01,Otros bienes y servicios
+1.6,-0.3,0.7,2020-07-01,Otros bienes y servicios
+0.2,-1,-0.5,2020-06-01,Otros bienes y servicios
+0.4,-0.4,0.4,2020-05-01,Otros bienes y servicios
+0,-0.8,-0.8,2020-04-01,Otros bienes y servicios
+1.5,0,0,2020-03-01,Otros bienes y servicios
+1.8,-0,0.1,2020-02-01,Otros bienes y servicios
+1.9,-0.1,-0.1,2020-01-01,Otros bienes y servicios
+2.7,2.7,0.4,2019-12-01,Otros bienes y servicios
+2.7,2.3,0.1,2019-11-01,Otros bienes y servicios

@@ -2,6 +2,8 @@ import pandas as pd
 pd.options.mode.chained_assignment = None
 import numpy as np
 import unidecode
+from datetime import datetime
+
 
 SERVER = 'https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/'
 NODATA = -99
@@ -233,4 +235,223 @@ def fallecidos_por_region_cumulativo(fecha='2020-03-02',
     assert len(values)==len(names), 'Line 192 does not match length'
     return values, names
 
-# HASTA EL 13
+
+def ventiladores_nacional(fecha='2020-03-02',
+                                     comuna='Concepcion',
+                                     region='Biobio'):
+    url = 'producto20/NumeroVentiladores.csv'
+    names = ['Ventiladores Total Nacional', 'Ventinladores Disponibles Nacional',
+            'Ventinladores Ocupados Nacional']
+    names = [unidecode.unidecode(x) for x in names]
+
+    df = pd.read_csv(SERVER+url)
+
+    try:
+        df.fillna(NODATA, inplace=True)
+        values = list(df[fecha].values)
+    except:
+        values = [NODATA]*len(names)
+
+    assert len(values)==len(names), 'Line 192 does not match length'
+    return values, names
+
+def movilidad_comuna(fecha='2020-03-02',
+                                     comuna='Concepcion',
+                                     region='Biobio'):
+    urls = ['producto33/IndiceDeMovilidad-IM.csv',
+          'producto33/IndiceDeMovilidad-IM_externo.csv ',
+          'producto33/IndiceDeMovilidad-IM_interno.csv']
+
+    names = ['IM', 'IM interno', 'IM externo', 'Superficie (km2)', 'Poblacion']
+    names = [unidecode.unidecode(x) for x in names]
+
+    def step(single_url):
+        try:
+            df = pd.read_csv(SERVER+single_url, index_col='Region')
+            df['Comuna'] = df.apply(lambda x: unidecode.unidecode(x['Comuna']).lower(), 1)
+            df.fillna(NODATA, inplace=True)
+            df = df[df['Comuna'] == comuna]
+            value  = df[fecha].values[0]
+            return value
+        except Exception as e:
+            # print(e)
+            value = NODATA
+            return value
+
+    values = []
+    for link in urls:
+        partial = step(link)
+        values.append(partial)
+
+    try:
+        df = pd.read_csv(SERVER+urls[0], index_col='Region')
+        df['Comuna'] = df.apply(lambda x: unidecode.unidecode(x['Comuna']).lower(), 1)
+        df.fillna(NODATA, inplace=True)
+        df = df[df['Comuna'] == comuna]
+        sup_pob = list(df[['Superficie_km2', 'Poblacion']].values[0])
+        values+=sup_pob
+    except Exception as e:
+        # print(e)
+        values+=[NODATA]*2
+
+    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+
+    return values, names
+
+def fallecidos_por_comuna(fecha='2020-03-30',
+                             comuna='Concepcion',
+                             region='Biobio'):
+    url = 'producto38/CasosFallecidosPorComuna.csv'
+    names = ['Fallecidos Comuna']
+    names = [unidecode.unidecode(x) for x in names]
+
+    try:
+        df = pd.read_csv(SERVER+url, index_col='Region')
+        df['Comuna'] = df.apply(lambda x: unidecode.unidecode(x['Comuna']).lower(), 1)
+        df.fillna(NODATA, inplace=True)
+        df = df[df['Comuna'] == comuna]
+        values = df[fecha].values
+        if len(values) == 0:
+            values = [NODATA]*len(names)
+
+    except Exception as e:
+        # print(e)
+        values = [NODATA]*len(names)
+
+    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+
+    return values, names
+
+def disponibilidad_camas_UCi_region(fecha='2020-03-30',
+                             comuna='Concepcion',
+                             region='Biobio'):
+    url = 'producto52/Camas_UCI.csv'
+    names = ['Camas UCI Region habilitadas',
+             'Camas UCI Region ocupadas COVID-19',
+             'Camas UCI Region ocupadas no COVID-19',
+             'Camas base Region (2019)']
+
+    names = [unidecode.unidecode(x) for x in names]
+
+    df = pd.read_csv(SERVER+url, index_col='Region')
+    if fecha in df.columns:
+        df.fillna(NODATA, inplace=True)
+        df.reset_index(inplace=True)
+        df = df[df['Region'] == region]
+        df = df[fecha]
+        values = list(df.values)
+    else:
+        values = [NODATA]*len(names)
+
+    assert len(values)==len(names), 'Line 135 does not match length'
+    return values, names
+
+def positividad_por_comuna(fecha='2020-03-30',
+                           comuna='Concepcion',
+                           region='Biobio'):
+    url = 'producto65/PositividadPorComuna.csv'
+    names = ['Positividad Semanal Comuna']
+    names = [unidecode.unidecode(x) for x in names]
+
+    try:
+        df = pd.read_csv(SERVER+url, index_col='Region')
+        df['Comuna'] = df.apply(lambda x: unidecode.unidecode(x['Comuna']).lower(), 1)
+        df.fillna(NODATA, inplace=True)
+        df = df[df['Comuna'] == comuna]
+        df = df.iloc[:, 4:].transpose()
+
+        df = df.loc[(df.index >= fecha)].iloc[0]
+        values = df.values
+        if len(values) == 0:
+            values = [NODATA]*len(names)
+
+    except Exception as e:
+        # print(e)
+        values = [NODATA]*len(names)
+
+    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+    return values, names
+
+def valor_dolar(fecha='2020-03-30',
+                comuna='Concepcion',
+                region='Biobio'):
+    path = 'Domain/data/Datos históricos USD_CLP.csv'
+    names = ['USD valor']
+    names = [unidecode.unidecode(x) for x in names]
+
+    try:
+        df = pd.read_csv(path)
+        df.fillna(NODATA, inplace=True)
+        def fn(fecha):
+            date_split = fecha.split('.')
+            date_ = pd.DataFrame({'year': [date_split[2]],
+                                  'month': [date_split[1]],
+                                  'day': [date_split[0]]})
+            return pd.to_datetime(date_)
+
+        df['Fecha'] = df.apply(lambda x: fn(x['Fecha']), 1)
+        df = df[df['Fecha'] == fecha]['Último']
+        df = df.values[0].replace(',', '.')
+        df = float(df)
+        values = [df]
+
+        if len(values) == 0:
+            values = [NODATA]*len(names)
+
+    except Exception as e:
+        # print(e)
+        values = [NODATA]*len(names)
+
+    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+
+    return values, names
+
+def positividad_por_comuna(fecha='2020-03-30',
+                           comuna='Concepcion',
+                           region='Biobio'):
+    url = 'producto65/PositividadPorComuna.csv'
+    names = ['Positividad Semanal Comuna']
+    names = [unidecode.unidecode(x) for x in names]
+
+    try:
+        df = pd.read_csv(SERVER+url, index_col='Region')
+        df['Comuna'] = df.apply(lambda x: unidecode.unidecode(x['Comuna']).lower(), 1)
+        df.fillna(NODATA, inplace=True)
+        df = df[df['Comuna'] == comuna]
+        df = df.iloc[:, 4:].transpose()
+
+        df = df.loc[(df.index >= fecha)].iloc[0]
+        values = df.values
+        if len(values) == 0:
+            values = [NODATA]*len(names)
+
+    except Exception as e:
+        # print(e)
+        values = [NODATA]*len(names)
+
+    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+    return values, names
+
+
+def IPC_mensual(fecha='2020-03-30',
+                comuna='Concepcion',
+                region='Biobio'):
+
+    url = 'Domain/data/ipc.csv'
+    df = pd.read_csv(url)
+    fecha_mensual = '2020-{}-01'.format(fecha.split('-')[1])
+
+    df = df[df.fecha==fecha_mensual]
+
+    all_names = []
+    all_values = []
+    for n, v in zip(df['item'], df.values):
+        cc = ['IPC '+n+' '+k if 'IPC' not in n else n+' '+k for k in df.columns[:-1]]
+        values = list(v[:-2])
+        names = list(cc[:-1])
+        all_names.append(names)
+        all_values.append(values)
+
+    flat_names = [nn for n in all_names for nn in n]
+    flat_values = [nn for n in all_values for nn in n]
+    return flat_values, flat_names

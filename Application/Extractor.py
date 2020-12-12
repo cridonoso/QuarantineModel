@@ -4,7 +4,7 @@ import pandas as pd
 import pickle
 
 from joblib import Parallel, delayed
-from datetime import datetime
+from datetime import datetime, timedelta
 from Domain import utils
 from tqdm import tqdm
 
@@ -27,7 +27,7 @@ class Extractor:
         """
         super(Extractor, self).__init__()
         self.start_date  = start_date
-        self.end_date    = end_date
+        self.end_date    = datetime.strftime(end_date-timedelta(days=1), '%Y-%m-%d')
 
         self.quarantines = utils.get_cuarentenas()
         self.comuna_to_region = pd.read_csv('Domain/data/comuna_region.csv')

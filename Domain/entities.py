@@ -33,7 +33,14 @@ class AlphaExtractor(Extractor):
                               features.UCI_etario,
                               features.fallecidos_etario,
                               features.casos_nuevos_por_region_cumulativo,
-                              features.fallecidos_por_region_cumulativo]
+                              features.fallecidos_por_region_cumulativo,
+                              features.ventiladores_nacional,
+                              features.movilidad_comuna,
+                              features.fallecidos_por_comuna,
+                              features.disponibilidad_camas_UCi_region,
+                              features.positividad_por_comuna,
+                              features.valor_dolar,
+                              features.IPC_mensual]
 
     def get_features(self, date, comuna, region):
         num_cores = multiprocessing.cpu_count()
@@ -46,9 +53,12 @@ class AlphaExtractor(Extractor):
                             for fn in self.features_list)
 
         values = np.concatenate([x[0] for x in response])
+        print(values)
         feat_names = np.concatenate([x[1] for x in response])
-
-        return values/N[0], feat_names
+        index_surface = np.where(feat_names=="Superficie (km2)")
+        surface = values[index_surface]
+        density = N[0]/surface
+        return values/density, feat_names
 
 
     def get_label(self, date, comuna):
