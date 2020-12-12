@@ -3,3 +3,4 @@ pandas
 tqdm
 Unidecode
 joblib
+beautifulsoup4
