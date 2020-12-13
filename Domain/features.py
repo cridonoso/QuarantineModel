@@ -137,7 +137,7 @@ def PCR_por_region(fecha='2020-03-02',
     else:
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 135 does not match length'
+    assert len(values)==len(names), 'Line 140 does not match length'
     return values, names
 
 def UCI_por_region(fecha='2020-03-02',
@@ -156,7 +156,7 @@ def UCI_por_region(fecha='2020-03-02',
     else:
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 154 does not match length'
+    assert len(values)==len(names), 'Line 159 does not match length'
     return values, names
 
 def UCI_etario(fecha='2020-03-02',
@@ -174,7 +174,7 @@ def UCI_etario(fecha='2020-03-02',
     else:
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 172 does not match length'
+    assert len(values)==len(names), 'Line 177 does not match length'
     return values, names
 
 def fallecidos_etario(fecha='2020-03-02',
@@ -194,7 +194,7 @@ def fallecidos_etario(fecha='2020-03-02',
     else:
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 192 does not match length'
+    assert len(values)==len(names), 'Line 197 does not match length'
     return values, names
 
 def casos_nuevos_por_region_cumulativo(fecha='2020-03-02',
@@ -213,7 +213,7 @@ def casos_nuevos_por_region_cumulativo(fecha='2020-03-02',
     else:
         values =  [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 192 does not match length'
+    assert len(values)==len(names), 'Line 216 does not match length'
     return values, names
 
 def fallecidos_por_region_cumulativo(fecha='2020-03-02',
@@ -232,7 +232,7 @@ def fallecidos_por_region_cumulativo(fecha='2020-03-02',
     else:
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 192 does not match length'
+    assert len(values)==len(names), 'Line 235 does not match length'
     return values, names
 
 
@@ -252,7 +252,7 @@ def ventiladores_nacional(fecha='2020-03-02',
     except:
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 192 does not match length'
+    assert len(values)==len(names), 'Line 255 does not match length'
     return values, names
 
 def movilidad_comuna(fecha='2020-03-02',
@@ -294,7 +294,7 @@ def movilidad_comuna(fecha='2020-03-02',
         # print(e)
         values+=[NODATA]*2
 
-    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+    assert len(values)==len(names), 'Line 297 does not match length {}'.format(comuna)
 
     return values, names
 
@@ -318,7 +318,7 @@ def fallecidos_por_comuna(fecha='2020-03-30',
         # print(e)
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+    assert len(values)==len(names), 'Line 321 does not match length {}'.format(comuna)
 
     return values, names
 
@@ -343,7 +343,7 @@ def disponibilidad_camas_UCi_region(fecha='2020-03-30',
     else:
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 135 does not match length'
+    assert len(values)==len(names), 'Line 346 does not match length'
     return values, names
 
 def positividad_por_comuna(fecha='2020-03-30',
@@ -369,7 +369,7 @@ def positividad_por_comuna(fecha='2020-03-30',
         # print(e)
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+    assert len(values)==len(names), 'Line 372 does not match length {}'.format(comuna)
     return values, names
 
 def valor_dolar(fecha='2020-03-30',
@@ -402,7 +402,7 @@ def valor_dolar(fecha='2020-03-30',
         # print(e)
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+    assert len(values)==len(names), 'Line 405 does not match length {}'.format(comuna)
 
     return values, names
 
@@ -429,7 +429,7 @@ def positividad_por_comuna(fecha='2020-03-30',
         # print(e)
         values = [NODATA]*len(names)
 
-    assert len(values)==len(names), 'Line 45 does not match length {}'.format(comuna)
+    assert len(values)==len(names), 'Line 432 does not match length {}'.format(comuna)
     return values, names
 
 
@@ -452,6 +452,8 @@ def IPC_mensual(fecha='2020-03-30',
         all_names.append(names)
         all_values.append(values)
 
-    flat_names = [nn for n in all_names for nn in n]
+    flat_names = [unidecode.unidecode(nn) for n in all_names for nn in n]
     flat_values = [nn for n in all_values for nn in n]
+
+    assert len(flat_names)==len(flat_values), 'Line 458 does not match length {}'.format(comuna)
     return flat_values, flat_names

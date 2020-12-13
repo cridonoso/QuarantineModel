@@ -90,3 +90,8 @@ class Extractor:
 
         with open(path, 'wb') as handle:
             pickle.dump(response_dic, handle)
+
+    def to_csv(self, path):
+        df = pd.DataFrame(self.features, columns=self.feat_names)
+        df['Label'] = self.labels
+        df.to_csv(path, index=False)
