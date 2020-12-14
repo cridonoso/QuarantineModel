@@ -63,7 +63,7 @@ class Extractor:
 
         return features_comuna, labels_comuna, feat_names
 
-    def extract_features(self, n_jobs=1, comuna=None):
+    def extract_features(self, n_jobs=1, comuna=None, return_response=False):
 
         if comuna is not None:
             values, labels, names = self.run_comuna(comuna)
@@ -73,6 +73,8 @@ class Extractor:
         else:
             response = Parallel(n_jobs=n_jobs)(delayed(self.run_comuna)(c) \
                        for c in self.quarantines['Nombre'])
+
+            if return_response: return response
 
             self.features = np.vstack([x[0] for x in response if len(x[0])>0])
             self.labels = np.concatenate([x[1] for x in response if len(x[0])>0])
@@ -92,6 +94,8 @@ class Extractor:
             pickle.dump(response_dic, handle)
 
     def to_csv(self, path):
+        print(len(self.features))
+        print(len(self.labels))
         df = pd.DataFrame(self.features, columns=self.feat_names)
         df['Label'] = self.labels
         df.to_csv(path, index=False)

@@ -441,19 +441,25 @@ def IPC_mensual(fecha='2020-03-30',
     df = pd.read_csv(url)
     fecha_mensual = '2020-{}-01'.format(fecha.split('-')[1])
 
-    df = df[df.fecha==fecha_mensual]
-
     all_names = []
-    all_values = []
-    for n, v in zip(df['item'], df.values):
-        cc = ['IPC '+n+' '+k if 'IPC' not in n else n+' '+k for k in df.columns[:-1]]
-        values = list(v[:-2])
-        names = list(cc[:-1])
-        all_names.append(names)
-        all_values.append(values)
+    
+    df_just_for_labels = df[df['fecha'] == '2020-11-01']['item']
+    for n in df_just_for_labels:
+        c = ['IPC '+n+' '+k if 'IPC' not in n else n+' '+k for k in df.columns[:-2]]
+        all_names.append(c)
+    names = [unidecode.unidecode(nn) for n in all_names for nn in n]
+        
+    df_ = df[df.fecha==fecha_mensual]
 
-    flat_names = [unidecode.unidecode(nn) for n in all_names for nn in n]
-    flat_values = [nn for n in all_values for nn in n]
-
-    assert len(flat_names)==len(flat_values), 'Line 458 does not match length {}'.format(comuna)
-    return flat_values, flat_names
+    if df_.shape[0] == 0:
+        flat_values =  [NODATA]*len(names)
+    else:
+        all_values = []
+        for v in df_.values:
+            values = list(v[:-2])
+            all_values.append(values)
+        flat_values = [nn for n in all_values for nn in n]
+        
+    assert len(names)==len(flat_values), 'Line 458 does not match length {}'.format(comuna)
+    
+    return flat_values, names
