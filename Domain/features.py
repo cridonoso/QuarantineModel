@@ -375,6 +375,10 @@ def positividad_por_comuna(fecha='2020-03-30',
 def valor_dolar(fecha='2020-03-30',
                 comuna='Concepcion',
                 region='Biobio'):
+    '''
+    https://es.investing.com/currencies/usd-clp-historical-data
+    '''
+    
     path = 'Domain/data/Datos históricos USD_CLP.csv'
     names = ['USD valor']
     names = [unidecode.unidecode(x) for x in names]
@@ -442,13 +446,13 @@ def IPC_mensual(fecha='2020-03-30',
     fecha_mensual = '2020-{}-01'.format(fecha.split('-')[1])
 
     all_names = []
-    
+
     df_just_for_labels = df[df['fecha'] == '2020-11-01']['item']
     for n in df_just_for_labels:
         c = ['IPC '+n+' '+k if 'IPC' not in n else n+' '+k for k in df.columns[:-2]]
         all_names.append(c)
     names = [unidecode.unidecode(nn) for n in all_names for nn in n]
-        
+
     df_ = df[df.fecha==fecha_mensual]
 
     if df_.shape[0] == 0:
@@ -459,7 +463,57 @@ def IPC_mensual(fecha='2020-03-30',
             values = list(v[:-2])
             all_values.append(values)
         flat_values = [nn for n in all_values for nn in n]
-        
+
     assert len(names)==len(flat_values), 'Line 458 does not match length {}'.format(comuna)
-    
+
     return flat_values, names
+
+def SPIPSA(fecha='2020-03-30',
+                comuna='Concepcion',
+                region='Biobio'):
+    '''
+    https://es.investing.com/indices/ipsa-historical-data
+    '''
+    url = 'Domain/data/spipsa.csv'
+    df = pd.read_csv(url)
+
+    names = list(df.columns[1:-3])
+    names = [unidecode.unidecode('SPIPSA_'+x) for x in names]
+
+    df['Fecha'] = df.apply(lambda x: '-'.join(x['Fecha'].split('.')[::-1]), 1)
+    df = df[df['Fecha'] >= fecha]
+    try:
+        df = df.iloc[-1]
+        values = list(df.values[1:-3])
+        values = [float(v.replace('.', '').replace(',', '.')) for v in values]
+    except:
+        values = [NODATA]*len(names)
+
+    assert len(names)==len(values), 'Line 458 does not match length {}'.format(comuna)
+
+    return values, names
+
+def SPCLXIGPA(fecha='2020-03-30',
+                      comuna='Concepcion',
+                      region='Biobio'):
+    '''
+    https://es.investing.com/indices/igpa-historical-data
+    '''
+    url = 'Domain/data/spclxigpa.csv'
+    df = pd.read_csv(url)
+
+    names = list(df.columns[1:-3])
+    names = [unidecode.unidecode('SPCLXIGPA_'+x) for x in names]
+
+    df['Fecha'] = df.apply(lambda x: '-'.join(x['Fecha'].split('.')[::-1]), 1)
+    df = df[df['Fecha'] >= fecha]
+    try:
+        df = df.iloc[-1]
+        values = list(df.values[1:-3])
+        values = [float(v.replace('.', '').replace(',', '.')) for v in values]
+    except:
+        values = [NODATA]*len(names)
+
+    assert len(names)==len(values), 'Line 458 does not match length {}'.format(comuna)
+
+    return values, names

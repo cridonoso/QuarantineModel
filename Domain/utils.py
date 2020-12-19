@@ -84,3 +84,22 @@ def get_IPC():
 
     all_frames = pd.concat(ipc_frames)
     return all_frames
+
+def get_acciones():
+    from selenium import webdriver
+    from selenium.common.exceptions import NoSuchElementException
+    from selenium.webdriver.common.keys import Keys
+    browser = webdriver.Firefox()
+    url = 'https://es.investing.com/equities/chile'
+    browser.get(url)
+    option = browser.find_element_by_id('all')
+    option.click()
+    option = browser.find_element_by_id('cross_rate_markets_stocks_1')
+    print(option)
+    html_source = browser.page_source
+    browser.quit()
+    with open('partial.txt', 'w') as handle:
+        handle.write(html_source)
+
+    soup = BeautifulSoup(html_source,'html.parser')
+    find = soup.find('table', attrs={'class': 'genTbl closedTbl crossRatesTbl elpTbl elp25'})
