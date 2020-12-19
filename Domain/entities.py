@@ -23,7 +23,7 @@ class OnlyCovidExtractor(Extractor):
         population
 
         """
-        super(AlphaExtractor, self).__init__(**kwargs)
+        super(OnlyCovidExtractor, self).__init__(**kwargs)
         self.features_list = [features.casos_totales_por_comuna,
                               features.casos_totales_por_comuna_cumulativo,
                               features.casos_totales_por_region_cumulativo,
