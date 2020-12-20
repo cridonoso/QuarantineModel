@@ -1,5 +1,5 @@
 import unittest
-from Domain.entities import AlphaExtractor
+from Domain.entities import AlphaExtractor, BetaExtractor
 import multiprocessing
 from Domain import utils
 
@@ -10,11 +10,11 @@ class TestingAppClass(unittest.TestCase):
         # ipc_frame = utils.get_IPC()
         # ipc_frame.to_csv('Domain/data/ipc.csv', index=False)
         # utils.get_acciones()
-        alpha = AlphaExtractor(start_date='2020-08-20',
-                               end_date='2020-09-11')
+        alpha = BetaExtractor(start_date='2020-08-20',
+                               end_date='2020-10-30')
         num_cores = multiprocessing.cpu_count()
         alpha.extract_features(n_jobs=num_cores, comuna='concepcion')
-        alpha.extract_features(n_jobs=num_cores)
+        # alpha.extract_features(n_jobs=num_cores)
 
     # def test_upper(self):
     #     alpha = AlphaExtractor(start_date='2020-10-02')

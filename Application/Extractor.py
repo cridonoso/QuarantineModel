@@ -53,11 +53,15 @@ class Extractor:
         labels_comuna   = []
 
         for date in tqdm(range, desc='Processing {}'.format(comuna)):
+            label = self.get_label(date, comuna)
+
+            if label is None: continue
+
             values, feat_names = self.get_features(str(date.date()),
                                        comuna,
                                        region)
             if len(values) == 0: continue
-            label = self.get_label(date, comuna)
+
             features_comuna.append(values)
             labels_comuna.append(label)
 
